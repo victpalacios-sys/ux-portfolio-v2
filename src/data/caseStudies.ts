@@ -145,7 +145,8 @@ export const caseStudies: CaseStudy[] = [
     slug: 'currency-exchange',
     title: 'Currency Exchange for Travellers',
     tag: 'Consumer Finance',
-    outcome: 'Designed a frictionless mobile experience for first-time currency exchange users',
+    outcome:
+      'Designed a frictionless mobile-first currency exchange experience that eliminates the hidden 8–12% cost of traditional FX and reduces the anxiety of managing foreign cash.',
     description:
       'A mobile-first currency exchange app for travellers who need to exchange money quickly without confusion. Focused on reducing cognitive load at the point of conversion.',
     coverImage:
@@ -154,8 +155,34 @@ export const caseStudies: CaseStudy[] = [
     client: 'Fintech startup',
     role: 'UX Designer',
     tools: 'Figma, Maze',
-    sections: [],
     featured: true,
+    sections: [
+      {
+        heading: 'The Hidden Tax on Travel',
+        body: 'Traditional currency exchange extracts 8–12% through a combination of opaque exchange rate markups, inconvenient airport kiosks, fee-laden credit card transactions, and leftover cash that is hard to sell back at a fair rate. The pain is distributed across the entire travel journey — planning, departure, destination, and return — making it easy to underestimate how much is being lost.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_af99deeba7af48e0b24c8f62f58ef35b~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_af99deeba7af48e0b24c8f62f58ef35b~mv2.png',
+        imageAlt: 'Problem overview: the hidden costs of traditional currency exchange',
+      },
+      {
+        heading: 'The Value Proposition',
+        body: 'Fair, transparent rates using minimal margins on wholesale exchange rates. Flexible delivery options: home, destination, or airport pickup. Easy sell-back of leftover currency at the same fair rate. This is not just cheaper — it removes the timing stress of wondering when to exchange and reduces the psychological overhead of handling unfamiliar foreign cash in an unfamiliar place.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_c597eebd58784b5abb64ac6e9187925d~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_c597eebd58784b5abb64ac6e9187925d~mv2.png',
+        imageAlt: 'Value proposition diagram: fair rates, flexible delivery, easy sell-back',
+      },
+      {
+        heading: 'The Design Challenge',
+        body: 'Three tensions shaped the design: building trust for sensitive money transactions inside a mobile app; simplifying genuinely complex decisions about rates, timing, and amounts; and integrating multiple distinct touchpoints — mobile ordering, delivery tracking, and sell-back — without the experience feeling like a financial dashboard. The goal was confidence, not complexity.',
+      },
+      {
+        heading: 'Core Solution: Conversational Commerce',
+        body: 'An AI-powered chatbot lets customers either follow structured prompts or state their needs directly — \"I need €500 by Friday\" — without having to navigate menus or understand exchange rate mechanics first. A traditional form flow is also available for users who prefer explicit control over every variable. The chatbot handles ambiguity and reduces cognitive load; the form provides certainty for those who want it.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_494067064eef49eab0c489ce2c47648c~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_494067064eef49eab0c489ce2c47648c~mv2.png',
+        imageAlt: 'Wireframes showing conversational chatbot and form-based ordering flows',
+      },
+    ],
   },
   {
     slug: 'nokia-7710',
