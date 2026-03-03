@@ -30,7 +30,6 @@ export default function AboutTeaser() {
               alt="Victor Palacios"
               fill
               className="object-cover"
-              unoptimized
             />
             <div
               className="absolute inset-0 rounded-2xl"

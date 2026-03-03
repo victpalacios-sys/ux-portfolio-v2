@@ -104,7 +104,6 @@ export default async function CaseStudyPage({ params }: Props) {
             alt={study.title}
             fill
             className="object-cover"
-            unoptimized
           />
         </div>
 
