@@ -3,6 +3,8 @@ import CredibilityBar from '@/components/CredibilityBar'
 import ServicesSection from '@/components/ServicesSection'
 import WorkSection from '@/components/WorkSection'
 import ProcessSection from '@/components/ProcessSection'
+import AboutTeaser from '@/components/AboutTeaser'
+import FooterCTA from '@/components/FooterCTA'
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
       <ServicesSection />
       <WorkSection />
       <ProcessSection />
+      <AboutTeaser />
+      <FooterCTA />
     </main>
   )
 }
