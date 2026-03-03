@@ -188,7 +188,8 @@ export const caseStudies: CaseStudy[] = [
     slug: 'nokia-7710',
     title: 'Nokia 7710',
     tag: 'Mobile Hardware',
-    outcome: "Pioneered touchscreen UX for Nokia's first touch-only smartphone in 2004",
+    outcome:
+      "Designed the touch interaction model and core UI for Nokia's first touch-only smartphone — three years before the iPhone redefined the category.",
     description:
       "One of the earliest touchscreen smartphone UX designs in the industry. Designed the touch interaction model for Nokia's 7710 — before the iPhone.",
     coverImage:
@@ -196,9 +197,31 @@ export const caseStudies: CaseStudy[] = [
     year: '2004',
     client: 'Nokia',
     role: 'UX Designer',
-    tools: 'Early prototyping tools',
-    sections: [],
+    tools: 'Early prototyping tools, Nokia internal design system',
     featured: true,
+    sections: [
+      {
+        heading: 'The First Wave of Smartphones',
+        body: 'The Nokia 7710 launched in 2004 alongside the Palm Treo as part of the first generation of devices that would eventually define the smartphone era. My primary contributions were UI design for call handling, camera, media browser, and settings — alongside active participation in usability studies and the cross-team design of the Series 90 UI Style, Nokia\'s shared interaction framework for the platform.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_2f724723369a41e3afbc986c34583d10~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_2f724723369a41e3afbc986c34583d10~mv2.png',
+        imageAlt: 'Nokia 7710 project overview showing UI screens and device design',
+      },
+      {
+        heading: 'Hardware UX: Where Software Meets Physical Design',
+        body: "I contributed to the physical design decisions: button placement, button sizing, overall device dimensions, and stylus design. The device shipped with a half-VGA touchscreen, an Opera web browser, Bluetooth, Wi-Fi, GPS, GSM, and a full media suite — ambitious specifications for 2004. A multi-function Voice key compressed three distinct interactions into a single physical control: short press to record a voice memo, long press to voice-dial, and during a call to switch to speakerphone.",
+        image:
+          'https://static.wixstatic.com/media/9d26ae_dc661e7463c04e3dbf19b630a3ce1da0~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_dc661e7463c04e3dbf19b630a3ce1da0~mv2.png',
+        imageAlt: 'Final Nokia 7710 industrial design — the shipped device',
+      },
+      {
+        heading: 'The Road Not Taken',
+        body: "The original industrial design was a bold statement — wide, flat, and deliberately unlike anything else on the market. It didn't survive public reception; critics drew comparisons to the N-Gage \"side-talking\" controversy, and the design was revised before launch. I still find the original more interesting than what shipped. The dynamics of mass taste versus design courage remain one of the most fascinating and unresolved tensions in the field.",
+        image:
+          'https://static.wixstatic.com/media/9d26ae_e79167464d95499ead974e907b928191~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_e79167464d95499ead974e907b928191~mv2.png',
+        imageAlt: 'Original Nokia 7710 industrial design concept — the road not taken',
+      },
+    ],
   },
 ]
 
