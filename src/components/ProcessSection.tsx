@@ -78,7 +78,7 @@ export default function ProcessSection() {
             >
               <span
                 className="text-4xl font-serif font-bold block mb-4 leading-none"
-                style={{ color: 'color-mix(in srgb, var(--color-gold) 20%, transparent)' }}
+                style={{ color: 'color-mix(in srgb, var(--color-gold) 60%, transparent)' }}
                 aria-hidden="true"
               >
                 {step.number}
