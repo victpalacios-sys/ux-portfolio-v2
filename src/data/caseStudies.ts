@@ -85,17 +85,61 @@ export const caseStudies: CaseStudy[] = [
     slug: 'ibwave-floorplans',
     title: 'Importing Floorplans in iBwave',
     tag: 'Enterprise B2B',
-    outcome: 'Streamlined a critical workflow for wireless network engineers worldwide',
+    outcome:
+      'Reduced building model import from 6–12 hours of manual tracing to under 3 minutes — and proved scale by importing the entire Burj Khalifa structure in 10 minutes.',
     description:
-      'iBwave Design is the industry standard for indoor wireless network design. I redesigned the BIM file import workflow to reduce friction for engineers working at scale.',
+      "iBwave Design is the global standard for indoor wireless network design. I redesigned the BIM file import workflow — discovering Autodesk's Forge API and driving months of internal advocacy — to eliminate the most time-consuming step in every project.",
     coverImage:
       'https://static.wixstatic.com/media/9d26ae_63d92a23d9a14b3cbdebc60d93d7d0f2~mv2.jpg/v1/fill/w_480,h_433,q_90,enc_avif,quality_auto/9d26ae_63d92a23d9a14b3cbdebc60d93d7d0f2~mv2.jpg',
-    year: '2018',
+    year: '2022',
     client: 'iBwave Solutions',
     role: 'Senior UX Designer',
-    tools: 'Axure, Sketch',
-    sections: [],
+    tools: 'Figma, Axure, Sketch',
     featured: true,
+    sections: [
+      {
+        heading: 'The Problem: Days Lost to Manual Tracing',
+        body: "Every wireless network design began the same way: an engineer importing a floor plan image and manually tracing every structural element — walls, doors, windows, columns — one by one. iBwave's simulation engine needed to know where every barrier was and what material it was made of, and the only way to get that data was human labour. A medium-sized office building took 6–12 hours. A stadium or hospital: one to two weeks. This was the unavoidable first step before a single antenna could be placed.",
+        image:
+          'https://static.wixstatic.com/media/9d26ae_be23ce84d2ec4719bfd2cf5198edd882~mv2.jpg/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_be23ce84d2ec4719bfd2cf5198edd882~mv2.jpg',
+        imageAlt: 'Manual floor plan tracing workflow — the problem state',
+      },
+      {
+        heading: 'Technical Strategy: Finding Semantic CAD',
+        body: "Customer files were 2D PDFs — structural outlines with no embedded semantic data. Automation was impossible from that starting point. Research led to Autodesk's Forge platform: APIs for reading modern 3D BIM formats like Revit, which carry rich semantic information. Every element is identified (wall, door, window) and every material is tagged. Full automation became technically feasible. The business case was harder. It took months of prototyping, presentations, and internal advocacy to secure the investment to build it.",
+        image:
+          'https://static.wixstatic.com/media/9d26ae_a668afd75f894ed686745b01fadd9005~mv2.jpeg/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_a668afd75f894ed686745b01fadd9005~mv2.jpeg',
+        imageAlt: 'Technical research diagram showing the Autodesk Forge discovery process',
+      },
+      {
+        heading: 'Result: 3 Minutes, Any Building on Earth',
+        body: "The alpha release reduced building model import from hours to under three minutes for a typical office or hotel. The team needed a memorable proof of scale. We imported the complete structure of the Burj Khalifa — all walls, doors, windows, and floors — in under ten minutes. The feature shipped to iBwave's global user base of wireless network engineers.",
+        image:
+          'https://static.wixstatic.com/media/9d26ae_5518a43a94224bceb929cc14dd8f67eb~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_5518a43a94224bceb929cc14dd8f67eb~mv2.png',
+        imageAlt: 'Autodesk Forge implementation — the solution in action',
+      },
+      {
+        heading: 'The Import Wizard',
+        body: 'The import flow is a four-step wizard: select the BIM file; choose the building floors; select the structural layers (walls, doors, windows, stairs, floors); confirm the import into iBwave Design. The application automatically selects all relevant views and layers — the engineer only needs to intervene for exceptions. What took days now takes a few minutes of confirmation.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_4b80cd8b5d8f48b4bc7ae343ccabfe8e~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_4b80cd8b5d8f48b4bc7ae343ccabfe8e~mv2.png',
+        imageAlt: 'Four-step import wizard wireframes',
+      },
+      {
+        heading: 'Three-Panel Workspace',
+        body: 'The import screen divides into three coordinated panels: the Wizard/Browser for step-by-step guidance, a 2D Viewer showing the floor plan, and a 3D Viewer showing the volumetric model. Engineers can visually confirm their selections in real space before committing. Material mapping happens automatically — BIM materials (concrete, glass, wood) are matched to iBwave simulation materials without manual input.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_31214b7d89a142068c223582119d3ddd~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_31214b7d89a142068c223582119d3ddd~mv2.png',
+        imageAlt: 'Three-panel workspace: wizard, 2D viewer, 3D viewer',
+      },
+      {
+        heading: 'Graceful Error Handling',
+        body: 'When automatic material mapping encounters an unknown or ambiguous BIM material, an error icon surfaces on the specific item. One click opens a targeted dialog where the engineer selects the correct iBwave material for that type. The system handles the routine cases; the human handles the edge cases. The happy path stays frictionless; the engineer is never abandoned when something unexpected occurs.',
+        image:
+          'https://static.wixstatic.com/media/9d26ae_1486788310404474a14fc3009bb8822d~mv2.png/v1/fit/w_1200,h_900,q_90,enc_avif,quality_auto/9d26ae_1486788310404474a14fc3009bb8822d~mv2.png',
+        imageAlt: 'Error state dialog for manual material mapping exception',
+      },
+    ],
   },
   {
     slug: 'currency-exchange',
