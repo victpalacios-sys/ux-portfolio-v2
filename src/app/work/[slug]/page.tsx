@@ -97,13 +97,17 @@ export default async function CaseStudyPage({ params }: Props) {
         {/* Hero image */}
         <div
           className="relative w-full overflow-hidden"
-          style={{ aspectRatio: '21/9', background: 'var(--color-surface-2)' }}
+          style={{
+            height: '600px',
+            maxHeight: '70vh',
+            background: 'var(--color-surface-2)',
+          }}
         >
           <Image
             src={study.coverImage}
             alt={study.title}
             fill
-            className="object-cover"
+            className="object-contain"
           />
         </div>
 
@@ -125,6 +129,22 @@ export default async function CaseStudyPage({ params }: Props) {
                   >
                     {section.body}
                   </p>
+                  {section.image && (
+                    <div
+                      className="relative mt-6 rounded-xl overflow-hidden"
+                      style={{
+                        height: '400px',
+                        background: 'var(--color-surface-2)',
+                      }}
+                    >
+                      <Image
+                        src={section.image}
+                        alt={section.imageAlt ?? section.heading}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                 </div>
               ))
             ) : (
