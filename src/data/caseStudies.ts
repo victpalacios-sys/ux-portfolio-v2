@@ -9,7 +9,7 @@ export interface CaseStudy {
   client: string
   role: string
   tools: string
-  sections: { heading: string; body: string }[]
+  sections: { heading: string; body: string; image?: string; imageAlt?: string }[]
   featured: boolean
 }
 
