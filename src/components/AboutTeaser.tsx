@@ -26,7 +26,7 @@ export default function AboutTeaser() {
             style={{ aspectRatio: '3/4', background: 'var(--color-surface-2)' }}
           >
             <Image
-              src="https://static.wixstatic.com/media/9d26ae_1e501f86745f49179044289b9b7f730d~mv2.jpg/v1/crop/x_76,y_0,w_348,h_544/fill/w_417,h_653,al_c,lg_1,q_80,enc_avif,quality_auto/Victor%20Selfie_edited.jpg"
+              src="/images/victor-photo.jpg"
               alt="Victor Palacios"
               fill
               className="object-cover"
