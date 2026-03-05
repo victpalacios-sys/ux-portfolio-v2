@@ -23,7 +23,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       'A completely new application for the construction industry — from expert discovery and user research through to a full cross-platform interface for designing complex distribution networks.',
     coverImage:
-      '/images/distribution-networks-hero.png',
+      '/images/distribution-networks-hero-v2.png',
     year: '2024',
     client: 'Confidential',
     role: 'Lead UX Designer',
@@ -69,7 +69,7 @@ export const caseStudies: CaseStudy[] = [
         heading: 'Interface Design',
         body: 'After more than 100 iterations using Material Design as the base system, a clear design language emerged. The application assumes expert users: no-nonsense flows, canvas at centre stage, tools at the edges. Icons carry short descriptions to support new users without cluttering the workspace for experienced ones. The four core screens — Home, Project Details, Building View, and the Floorplan canvas — each have a single primary job.',
         image:
-          '/images/distribution-networks-hero.png',
+          '/images/distribution-networks-hero-v2.png',
         imageAlt: 'Floorplan view — the core design canvas',
       },
       {
