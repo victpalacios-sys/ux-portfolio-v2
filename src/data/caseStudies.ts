@@ -1,3 +1,11 @@
+export interface CaseStudySection {
+  heading: string
+  body: string
+  image?: string
+  imageAlt?: string
+  chartComponent?: 'market-segments'
+}
+
 export interface CaseStudy {
   slug: string
   title: string
@@ -9,7 +17,7 @@ export interface CaseStudy {
   client: string
   role: string
   tools: string
-  sections: { heading: string; body: string; image?: string; imageAlt?: string }[]
+  sections: CaseStudySection[]
   featured: boolean
 }
 
@@ -33,15 +41,13 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'The Market Opportunity',
         body: "The construction industry's distribution network design market exceeds $10B. The largest and most accessible segment is small, simple projects: cookie-cutter buildings like apartment complexes, hotels, and offices. The primary strategic objective was to penetrate this high-volume segment first — winning on speed and simplicity — while building the foundation to expand into medium and complex installations over time.",
-        image:
-          '/images/distribution-networks-section-market.png',
-        imageAlt: 'Market size diagram showing small, medium, and complex project segments',
+        chartComponent: 'market-segments',
       },
       {
         heading: 'Discovery: Experts & Users',
         body: 'Research began with expert interviews to map the high-level industry process — who does what, when, and how projects flow from concept to installation. From there, I interviewed both highly experienced designers and complete beginners to understand the detailed workflow at the task level and identify the core goals driving each user type. Internal workshops synthesised findings and aligned the team around a shared problem framing.',
         image:
-          '/images/distribution-networks-section-discovery.png',
+          '/images/distribution-networks-section-discovery-v2.png',
         imageAlt: 'Research and interviews synthesis diagram',
       },
       {
@@ -69,14 +75,14 @@ export const caseStudies: CaseStudy[] = [
         heading: 'Interface Design',
         body: 'After more than 100 iterations using Material Design as the base system, a clear design language emerged. The application assumes expert users: no-nonsense flows, canvas at centre stage, tools at the edges. Icons carry short descriptions to support new users without cluttering the workspace for experienced ones. The four core screens — Home, Project Details, Building View, and the Floorplan canvas — each have a single primary job.',
         image:
-          '/images/distribution-networks-hero-v2.png',
+          '/images/distribution-networks-interface-design.png',
         imageAlt: 'Floorplan view — the core design canvas',
       },
       {
         heading: 'Cross-Platform Strategy',
         body: 'Desktop: side panels are non-modal, staying open while the designer moves between tools and canvas. Tablet: the app bar and main tools are retained; panels adapt. Mobile: panels become modal to maximise canvas space. Precision placement on touch uses a two-step flow — pan to position the crosshair target, then tap to insert — eliminating the drag errors that plague direct-placement interactions on small screens.',
         image:
-          '/images/distribution-networks-section-interface.png',
+          '/images/distribution-networks-mobile-v2.png',
         imageAlt: 'Quick path to success flow showing guided new-user experience',
       },
     ],
