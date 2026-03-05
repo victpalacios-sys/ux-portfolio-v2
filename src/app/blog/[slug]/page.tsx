@@ -31,7 +31,7 @@ function renderSection(section: BlogSection, index: number) {
       : 'font-serif text-xl md:text-2xl mt-8 mb-3'
 
   return (
-    <div key={index} className="mb-6">
+    <div key={`section-${index}`} className="mb-6">
       {HeadingTag && section.heading && (
         <HeadingTag className={headingClass} style={{ color: 'var(--color-foreground)' }}>
           {section.heading}
@@ -72,7 +72,7 @@ function renderSection(section: BlogSection, index: number) {
         >
           <Image
             src={section.image}
-            alt={section.imageAlt ?? ''}
+            alt={section.imageAlt ?? section.heading ?? ''}
             fill
             className="object-contain"
           />
@@ -152,7 +152,13 @@ export default async function BlogPostPage({ params }: Props) {
         {/* Body */}
         <div className="px-6 md:px-10 lg:px-16 py-20">
           <div className="max-w-3xl mx-auto">
-            {post.sections.map((section, i) => renderSection(section, i))}
+            {post.sections.length === 0 ? (
+              <p className="leading-relaxed" style={{ color: 'var(--color-muted)' }}>
+                Full post details available on request.
+              </p>
+            ) : (
+              post.sections.map((section, i) => renderSection(section, i))
+            )}
           </div>
         </div>
 
