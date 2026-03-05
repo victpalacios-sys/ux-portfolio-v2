@@ -75,19 +75,6 @@ export default function DiscoveryFilmstrip() {
       role="img"
       aria-label="Field research photos from distribution network discovery sessions"
     >
-      <style>{`
-        @keyframes filmstrip-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .filmstrip-track {
-          animation: filmstrip-scroll 50s linear infinite;
-        }
-        .filmstrip-track:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
       {/* Outer container — clips the scrolling track, shows gradient fades */}
       <div
         className="relative overflow-hidden rounded-xl"
@@ -113,8 +100,8 @@ export default function DiscoveryFilmstrip() {
 
         {/* Scrolling track */}
         <div
-          className="filmstrip-track flex py-4 px-3"
-          style={{ width: 'max-content', gap: '12px' }}
+          className="filmstrip-track flex gap-3 py-4 px-3"
+          style={{ width: 'max-content' }}
         >
           {filmStrip.map((photo, index) => {
             const isDuplicate = index >= photos.length
@@ -122,7 +109,7 @@ export default function DiscoveryFilmstrip() {
               <div
                 key={`filmstrip-${index}`}
                 className="relative flex-none rounded-lg overflow-hidden"
-                style={{ width: '220px', height: '270px', flexShrink: 0 }}
+                style={{ width: '220px', height: '270px' }}
                 aria-hidden={isDuplicate || undefined}
               >
                 {/* Photo */}
