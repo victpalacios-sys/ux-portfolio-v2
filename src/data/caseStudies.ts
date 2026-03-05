@@ -5,7 +5,7 @@ export interface CaseStudySection {
   image?: string
   imageAlt?: string
   /** Mutually exclusive with image — set one or neither, never both */
-  chartComponent?: 'market-segments'
+  chartComponent?: 'market-segments' | 'discovery-filmstrip'
 }
 
 export interface CaseStudy {
@@ -48,9 +48,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Discovery: Experts & Users',
         body: 'Research began with expert interviews to map the high-level industry process — who does what, when, and how projects flow from concept to installation. From there, I interviewed both highly experienced designers and complete beginners to understand the detailed workflow at the task level and identify the core goals driving each user type. Internal workshops synthesised findings and aligned the team around a shared problem framing.',
-        image:
-          '/images/distribution-networks-section-discovery-v2.png',
-        imageAlt: 'Research and interviews synthesis diagram',
+        chartComponent: 'discovery-filmstrip',
       },
       {
         heading: 'The Hierarchy of Needs',
