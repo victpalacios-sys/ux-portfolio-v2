@@ -1,8 +1,10 @@
 export interface CaseStudySection {
   heading: string
   body: string
+  /** Mutually exclusive with chartComponent — set one or neither, never both */
   image?: string
   imageAlt?: string
+  /** Mutually exclusive with image — set one or neither, never both */
   chartComponent?: 'market-segments'
 }
 
