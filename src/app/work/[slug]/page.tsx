@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getCaseStudy, caseStudies } from '@/data/caseStudies'
 import FloatingCTA from '@/components/FloatingCTA'
 import MarketSegmentsChart from '@/components/charts/MarketSegmentsChart'
+import DiscoveryFilmstrip from '@/components/charts/DiscoveryFilmstrip'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -132,6 +133,8 @@ export default async function CaseStudyPage({ params }: Props) {
                   </p>
                   {section.chartComponent === 'market-segments' ? (
                     <MarketSegmentsChart />
+                  ) : section.chartComponent === 'discovery-filmstrip' ? (
+                    <DiscoveryFilmstrip />
                   ) : section.image ? (
                     <div
                       className="relative mt-6 rounded-xl overflow-hidden"
