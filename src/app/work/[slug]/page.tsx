@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getCaseStudy, caseStudies } from '@/data/caseStudies'
 import FloatingCTA from '@/components/FloatingCTA'
 import type { Metadata } from 'next'
+import MarketSegmentsChart from '@/components/charts/MarketSegmentsChart'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -129,7 +130,9 @@ export default async function CaseStudyPage({ params }: Props) {
                   >
                     {section.body}
                   </p>
-                  {section.image && (
+                  {section.chartComponent === 'market-segments' ? (
+                    <MarketSegmentsChart />
+                  ) : section.image ? (
                     <div
                       className="relative mt-6 rounded-xl overflow-hidden"
                       style={{
@@ -144,7 +147,7 @@ export default async function CaseStudyPage({ params }: Props) {
                         className="object-contain"
                       />
                     </div>
-                  )}
+                  ) : null}
                 </div>
               ))
             ) : (
