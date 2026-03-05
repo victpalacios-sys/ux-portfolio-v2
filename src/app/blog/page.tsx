@@ -27,66 +27,71 @@ export default function BlogPage() {
         </h1>
 
         {/* Post grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {blogPosts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-              <article
-                className="rounded-2xl overflow-hidden border transition-colors h-full flex flex-col"
-                style={{
-                  background: 'var(--color-surface)',
-                  borderColor: 'var(--color-border)',
-                }}
-              >
-                {/* Cover image */}
-                <div
-                  className="relative w-full overflow-hidden flex-shrink-0"
-                  style={{ height: '220px', background: 'var(--color-surface-2)' }}
+        {blogPosts.length === 0 ? (
+          <p style={{ color: 'var(--color-muted)' }}>No posts yet. Check back soon.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {blogPosts.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
+                <article
+                  className="rounded-2xl overflow-hidden border transition-colors h-full flex flex-col"
+                  style={{
+                    background: 'var(--color-surface)',
+                    borderColor: 'var(--color-border)',
+                  }}
                 >
-                  <Image
-                    src={post.coverImage}
-                    alt={post.coverImageAlt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
+                  {/* Cover image */}
+                  <div
+                    className="relative w-full overflow-hidden flex-shrink-0"
+                    style={{ height: '220px', background: 'var(--color-surface-2)' }}
+                  >
+                    <Image
+                      src={post.coverImage}
+                      alt={post.coverImageAlt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
 
-                {/* Content */}
-                <div className="p-6 flex flex-col flex-1">
-                  <p
-                    className="text-xs font-sans font-medium tracking-[0.2em] uppercase mb-3"
-                    style={{ color: 'var(--color-gold)' }}
-                  >
-                    {post.tag}
-                  </p>
-                  <h2
-                    className="font-serif text-xl mb-2 leading-snug tracking-[-0.01em] transition-colors group-hover:text-[var(--color-gold)]"
-                    style={{ color: 'var(--color-foreground)' }}
-                  >
-                    {post.title}
-                  </h2>
-                  <p
-                    className="text-xs font-sans mb-3"
-                    style={{ color: 'var(--color-muted)' }}
-                  >
-                    {post.date} · {post.readTime}
-                  </p>
-                  <p
-                    className="text-sm leading-relaxed line-clamp-3 flex-1"
-                    style={{ color: 'var(--color-muted)' }}
-                  >
-                    {post.excerpt}
-                  </p>
-                  <p
-                    className="mt-4 text-xs font-sans font-medium tracking-[0.15em] uppercase transition-colors"
-                    style={{ color: 'var(--color-gold)' }}
-                  >
-                    Read →
-                  </p>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
+                  {/* Content */}
+                  <div className="p-6 flex flex-col flex-1">
+                    <p
+                      className="text-xs font-sans font-medium tracking-[0.2em] uppercase mb-3"
+                      style={{ color: 'var(--color-gold)' }}
+                    >
+                      {post.tag}
+                    </p>
+                    <h2
+                      className="font-serif text-xl mb-2 leading-snug tracking-[-0.01em] transition-colors group-hover:text-[var(--color-gold)]"
+                      style={{ color: 'var(--color-foreground)' }}
+                    >
+                      {post.title}
+                    </h2>
+                    <p
+                      className="text-xs font-sans mb-3"
+                      style={{ color: 'var(--color-muted)' }}
+                    >
+                      {post.date} · {post.readTime}
+                    </p>
+                    <p
+                      className="text-sm leading-relaxed line-clamp-3 flex-1"
+                      style={{ color: 'var(--color-muted)' }}
+                    >
+                      {post.excerpt}
+                    </p>
+                    <p
+                      aria-hidden="true"
+                      className="mt-4 text-xs font-sans font-medium tracking-[0.15em] uppercase transition-colors"
+                      style={{ color: 'var(--color-gold)' }}
+                    >
+                      Read →
+                    </p>
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   )
