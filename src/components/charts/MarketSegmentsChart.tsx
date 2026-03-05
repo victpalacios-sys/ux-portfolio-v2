@@ -28,12 +28,14 @@ const segments = [
 ]
 
 export default function MarketSegmentsChart() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
     <div
       ref={ref}
+      role="img"
+      aria-label="Market segments chart: Small Projects ($100B, UX Target), Medium Projects ($33B), Complex Projects ($10B)"
       className="mt-6 rounded-xl p-6 md:p-8"
       style={{ background: 'var(--color-surface-2)' }}
     >
@@ -41,13 +43,13 @@ export default function MarketSegmentsChart() {
         {segments.map((seg, i) => (
           <div
             key={seg.name}
-            className="flex items-start gap-4 pl-3 border-l-2"
+            className="flex flex-wrap sm:flex-nowrap items-start gap-4 pl-3 border-l-2"
             style={{
               borderColor: seg.isTarget ? 'var(--color-gold)' : 'transparent',
             }}
           >
             {/* Label column */}
-            <div className="w-36 flex-shrink-0 pt-1">
+            <div className="w-28 sm:w-36 flex-shrink-0 pt-1">
               <p
                 className="text-sm font-sans font-medium leading-tight"
                 style={{ color: 'var(--color-foreground)' }}
@@ -65,6 +67,7 @@ export default function MarketSegmentsChart() {
             {/* Bar + value */}
             <div className="flex-1 flex items-center gap-3 pt-2">
               <div
+                aria-hidden="true"
                 className="flex-1 h-5 rounded-full overflow-hidden"
                 style={{ background: 'rgba(255,255,255,0.06)' }}
               >
@@ -73,10 +76,10 @@ export default function MarketSegmentsChart() {
                   style={{
                     background: seg.isTarget
                       ? 'var(--color-gold)'
-                      : 'rgba(201,168,76,0.35)',
+                      : 'color-mix(in srgb, var(--color-gold) 35%, transparent)',
                   }}
                   initial={{ width: 0 }}
-                  animate={isInView ? { width: `${seg.widthPct}%` } : { width: 0 }}
+                  animate={isInView ? { width: `${seg.widthPct}%` } : {}}
                   transition={{ duration: 0.8, ease: 'easeOut', delay: i * 0.15 }}
                 />
               </div>
