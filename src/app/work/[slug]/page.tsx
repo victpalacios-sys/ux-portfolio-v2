@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getCaseStudy, caseStudies } from '@/data/caseStudies'
 import FloatingCTA from '@/components/FloatingCTA'
-import type { Metadata } from 'next'
 import MarketSegmentsChart from '@/components/charts/MarketSegmentsChart'
+import type { Metadata } from 'next'
 
 interface Props {
   params: Promise<{ slug: string }>
