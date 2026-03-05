@@ -5,7 +5,7 @@ export interface CaseStudySection {
   image?: string
   imageAlt?: string
   /** Mutually exclusive with image — set one or neither, never both */
-  chartComponent?: 'market-segments' | 'discovery-filmstrip'
+  chartComponent?: 'market-segments' | 'discovery-filmstrip' | 'design-principles'
 }
 
 export interface CaseStudy {
@@ -60,9 +60,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Design Principles',
         body: 'Six principles guided every decision: easy to use — accessible for beginners without penalising experts; fast path to success — from zero to a working design as quickly as possible; progressive mastery — a clear path from novice to advanced; company expertise built in — best practices encoded in the tool, not left implicit; delight — visual quality and feature richness both matter; fast delivery — ship value quickly and iterate.',
-        image:
-          '/images/distribution-networks-section-principles.png',
-        imageAlt: 'Design principles diagram',
+        chartComponent: 'design-principles',
       },
       {
         heading: 'Defining the MVP',
