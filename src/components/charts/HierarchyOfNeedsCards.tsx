@@ -4,7 +4,15 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 
-const needs = [
+interface NeedItem {
+  number: string
+  title: string
+  description: string
+  src: string
+  alt: string
+}
+
+const needs: NeedItem[] = [
   {
     number: '01',
     title: 'Time is Money',
@@ -33,6 +41,7 @@ const needs = [
 
 export default function HierarchyOfNeedsCards() {
   const ref = useRef<HTMLDivElement>(null)
+  // Shallower trigger than DesignPrinciplesGrid (-100px) because these cards are taller
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
@@ -43,7 +52,7 @@ export default function HierarchyOfNeedsCards() {
       aria-label="Hierarchy of user needs"
     >
       {needs.map((need, index) => {
-        // Odd index (0, 2) → image left; even index (1) → image right
+        // Even index (0, 2) → image left; odd index (1) → image right
         const imageOnLeft = index % 2 === 0
 
         return (
@@ -61,7 +70,11 @@ export default function HierarchyOfNeedsCards() {
           >
             {/* Inner row — column on mobile, row on md+ */}
             <div
-              className={`flex flex-col md:flex-row${imageOnLeft ? '' : ' md:flex-row-reverse'}`}
+              className={
+                imageOnLeft
+                  ? 'flex flex-col md:flex-row'
+                  : 'flex flex-col md:flex-row md:flex-row-reverse'
+              }
             >
               {/* Image side — 40% on desktop, full width on mobile */}
               <div
