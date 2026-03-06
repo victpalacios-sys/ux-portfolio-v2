@@ -62,7 +62,7 @@ export default function InterfaceScreens() {
         aria-label="Interface screens"
         onKeyDown={handleKeyDown}
         tabIndex={0}
-        className="flex gap-2 overflow-x-auto pb-1"
+        className="flex gap-2 overflow-x-auto py-1 px-px"
         style={{ scrollbarWidth: 'none' } as React.CSSProperties}
       >
         {screens.map((screen, index) => {
