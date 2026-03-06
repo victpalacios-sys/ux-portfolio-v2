@@ -73,7 +73,7 @@ export default function HierarchyOfNeedsCards() {
               className={
                 imageOnLeft
                   ? 'flex flex-col md:flex-row'
-                  : 'flex flex-col md:flex-row md:flex-row-reverse'
+                  : 'flex flex-col md:flex-row-reverse'
               }
             >
               {/* Image side — 40% on desktop, full width on mobile */}
