@@ -7,6 +7,7 @@ import MarketSegmentsChart from '@/components/charts/MarketSegmentsChart'
 import DiscoveryFilmstrip from '@/components/charts/DiscoveryFilmstrip'
 import DesignPrinciplesGrid from '@/components/charts/DesignPrinciplesGrid'
 import HierarchyOfNeedsCards from '@/components/charts/HierarchyOfNeedsCards'
+import InterfaceScreens from '@/components/charts/InterfaceScreens'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -141,6 +142,8 @@ export default async function CaseStudyPage({ params }: Props) {
                     <DesignPrinciplesGrid />
                   ) : section.chartComponent === 'hierarchy-of-needs' ? (
                     <HierarchyOfNeedsCards />
+                  ) : section.chartComponent === 'interface-screens' ? (
+                    <InterfaceScreens />
                   ) : section.image ? (
                     <div
                       className="relative mt-6 rounded-xl overflow-hidden"

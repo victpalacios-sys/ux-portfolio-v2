@@ -5,7 +5,7 @@ export interface CaseStudySection {
   image?: string
   imageAlt?: string
   /** Mutually exclusive with image — set one or neither, never both */
-  chartComponent?: 'market-segments' | 'discovery-filmstrip' | 'design-principles' | 'hierarchy-of-needs'
+  chartComponent?: 'market-segments' | 'discovery-filmstrip' | 'design-principles' | 'hierarchy-of-needs' | 'interface-screens'
 }
 
 export interface CaseStudy {
@@ -70,9 +70,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'Interface Design',
         body: 'After more than 100 iterations using Material Design as the base system, a clear design language emerged. The application assumes expert users: no-nonsense flows, canvas at centre stage, tools at the edges. Icons carry short descriptions to support new users without cluttering the workspace for experienced ones. The four core screens — Home, Project Details, Building View, and the Floorplan canvas — each have a single primary job.',
-        image:
-          '/images/distribution-networks-interface-design.png',
-        imageAlt: 'Floorplan view — the core design canvas',
+        chartComponent: 'interface-screens',
       },
       {
         heading: 'Cross-Platform Strategy',
