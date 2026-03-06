@@ -44,7 +44,7 @@ const screens: Screen[] = [
 ]
 
 export default function InterfaceScreens() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(3) // Floor Plan is the centrepiece screen
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
