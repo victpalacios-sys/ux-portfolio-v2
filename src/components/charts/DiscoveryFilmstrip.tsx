@@ -80,6 +80,7 @@ export default function DiscoveryFilmstrip() {
   const trackRef = useRef<HTMLDivElement>(null)
   const isInteracting = useRef(false)
   const pointerStart = useRef({ clientX: 0, startX: 0 })
+  const activeAnimation = useRef<ReturnType<typeof animate> | null>(null)
 
   // Auto-scroll: ~30px/sec, skipped when user is interacting or prefers reduced motion
   useAnimationFrame((_, delta) => {
@@ -122,14 +123,17 @@ export default function DiscoveryFilmstrip() {
     let target = snapped + CARD_WIDTH
     // If target would be positive, jump x by -HALF_WIDTH first (seamless — duplicates are identical)
     if (target > 0) {
-      x.set(x.get() - HALF_WIDTH)
-      target -= HALF_WIDTH
+      const normalised = current - HALF_WIDTH
+      x.set(normalised)
+      target = normalised + CARD_WIDTH
     }
-    animate(x, target, {
+    activeAnimation.current?.stop()
+    activeAnimation.current = animate(x, target, {
       type: 'spring',
       stiffness: 400,
       damping: 35,
       onComplete: () => {
+        activeAnimation.current = null
         isInteracting.current = false
       },
     })
@@ -141,7 +145,8 @@ export default function DiscoveryFilmstrip() {
     const current = x.get()
     const snapped = Math.round(current / CARD_WIDTH) * CARD_WIDTH
     const target = snapped - CARD_WIDTH
-    animate(x, target, {
+    activeAnimation.current?.stop()
+    activeAnimation.current = animate(x, target, {
       type: 'spring',
       stiffness: 400,
       damping: 35,
@@ -149,6 +154,7 @@ export default function DiscoveryFilmstrip() {
         // Normalise if we've passed the loop boundary
         const final = x.get()
         if (final <= -HALF_WIDTH) x.set(final + HALF_WIDTH)
+        activeAnimation.current = null
         isInteracting.current = false
       },
     })
@@ -157,7 +163,6 @@ export default function DiscoveryFilmstrip() {
   return (
     <div
       className="mt-6"
-      role="img"
       aria-label="Field research photos from distribution network discovery sessions"
     >
       {/* Outer container — clips the track, holds gradient fades + buttons */}
