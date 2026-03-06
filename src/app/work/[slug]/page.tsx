@@ -6,6 +6,7 @@ import FloatingCTA from '@/components/FloatingCTA'
 import MarketSegmentsChart from '@/components/charts/MarketSegmentsChart'
 import DiscoveryFilmstrip from '@/components/charts/DiscoveryFilmstrip'
 import DesignPrinciplesGrid from '@/components/charts/DesignPrinciplesGrid'
+import HierarchyOfNeedsCards from '@/components/charts/HierarchyOfNeedsCards'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -138,6 +139,8 @@ export default async function CaseStudyPage({ params }: Props) {
                     <DiscoveryFilmstrip />
                   ) : section.chartComponent === 'design-principles' ? (
                     <DesignPrinciplesGrid />
+                  ) : section.chartComponent === 'hierarchy-of-needs' ? (
+                    <HierarchyOfNeedsCards />
                   ) : section.image ? (
                     <div
                       className="relative mt-6 rounded-xl overflow-hidden"

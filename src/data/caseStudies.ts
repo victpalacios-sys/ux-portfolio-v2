@@ -5,7 +5,7 @@ export interface CaseStudySection {
   image?: string
   imageAlt?: string
   /** Mutually exclusive with image — set one or neither, never both */
-  chartComponent?: 'market-segments' | 'discovery-filmstrip' | 'design-principles'
+  chartComponent?: 'market-segments' | 'discovery-filmstrip' | 'design-principles' | 'hierarchy-of-needs'
 }
 
 export interface CaseStudy {
@@ -53,9 +53,7 @@ export const caseStudies: CaseStudy[] = [
       {
         heading: 'The Hierarchy of Needs',
         body: 'Three forces drive every distribution network designer. Time is money — literally. Labour at every stage is expensive, and mistakes discovered late cost ten times more to fix. Simulations are essential to get the design right before installation. Collaboration matters: these projects involve multiple teams and companies, and smooth information-sharing reduces both cost and conflict. Finally, it is a business: designers need high-quality documentation and visual renders to impress clients and win future projects.',
-        image:
-          '/images/distribution-networks-section-needs.jpg',
-        imageAlt: 'Camera installation context photo illustrating the real-world job site',
+        chartComponent: 'hierarchy-of-needs',
       },
       {
         heading: 'Design Principles',
