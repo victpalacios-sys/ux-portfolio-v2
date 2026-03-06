@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
@@ -45,7 +45,6 @@ const screens: Screen[] = [
 
 export default function InterfaceScreens() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
@@ -56,17 +55,13 @@ export default function InterfaceScreens() {
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="mt-6"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-      aria-label="Interface design screens"
-    >
+    <div className="mt-6">
       {/* Tab row — horizontally scrollable, no visible scrollbar */}
       <div
         role="tablist"
         aria-label="Interface screens"
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
         className="flex gap-2 overflow-x-auto pb-1"
         style={{ scrollbarWidth: 'none' } as React.CSSProperties}
       >
@@ -75,8 +70,10 @@ export default function InterfaceScreens() {
           return (
             <button
               key={screen.label}
+              id={`interface-screens-tab-${index}`}
               role="tab"
               aria-selected={isActive}
+              aria-controls="interface-screens-panel"
               onClick={() => setActiveIndex(index)}
               className="px-4 py-2 rounded-full text-sm whitespace-nowrap transition-colors flex-none"
               style={{
@@ -109,6 +106,7 @@ export default function InterfaceScreens() {
 
       {/* Screen area — 16:9 aspect ratio, cross-fade on tab change */}
       <div
+        id="interface-screens-panel"
         role="tabpanel"
         aria-label={`${screens[activeIndex].label} screen`}
         className="relative mt-3 w-full aspect-video rounded-xl overflow-hidden"
@@ -128,7 +126,7 @@ export default function InterfaceScreens() {
               alt={screens[activeIndex].alt}
               fill
               className="object-contain"
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 75vw"
             />
           </motion.div>
         </AnimatePresence>
