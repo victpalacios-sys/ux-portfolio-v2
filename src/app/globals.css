@@ -16,23 +16,6 @@
   --max-width-content: 1200px;
 }
 
-/* DiscoveryFilmstrip — infinite horizontal scroll animation */
-@keyframes filmstrip-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.filmstrip-track {
-  animation: filmstrip-scroll 50s linear infinite;
-}
-.filmstrip-track:hover {
-  animation-play-state: paused;
-}
-@media (prefers-reduced-motion: reduce) {
-  .filmstrip-track {
-    animation-play-state: paused;
-  }
-}
-
 @layer base {
   * {
     box-sizing: border-box;
