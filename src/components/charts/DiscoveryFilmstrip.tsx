@@ -1,6 +1,10 @@
 'use client'
 
+import { useRef } from 'react'
+import { motion, useMotionValue, useAnimationFrame, useReducedMotion, animate } from 'framer-motion'
 import Image from 'next/image'
+
+const CARD_WIDTH = 232 // 220px photo + 12px gap
 
 const photos = [
   {
@@ -65,17 +69,98 @@ const photos = [
   },
 ]
 
-// Duplicate for seamless CSS loop (translateX(-50%) snaps back to start)
+const HALF_WIDTH = photos.length * CARD_WIDTH // 12 × 232 = 2784
+
+// Duplicate for seamless infinite loop
 const filmStrip = [...photos, ...photos]
 
 export default function DiscoveryFilmstrip() {
+  const prefersReducedMotion = useReducedMotion()
+  const x = useMotionValue(0)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const isInteracting = useRef(false)
+  const pointerStart = useRef({ clientX: 0, startX: 0 })
+
+  // Auto-scroll: ~30px/sec, skipped when user is interacting or prefers reduced motion
+  useAnimationFrame((_, delta) => {
+    if (isInteracting.current || prefersReducedMotion) return
+    const clamped = Math.min(delta, 32) // cap at ~2 frames to avoid jump on tab refocus
+    let next = x.get() - clamped * 0.03
+    if (next <= -HALF_WIDTH) next += HALF_WIDTH
+    x.set(next)
+  })
+
+  // Pointer Events — covers mouse drag (desktop) and touch swipe (mobile)
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    isInteracting.current = true
+    pointerStart.current = { clientX: e.clientX, startX: x.get() }
+    e.currentTarget.setPointerCapture(e.pointerId)
+    if (trackRef.current) trackRef.current.style.cursor = 'grabbing'
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isInteracting.current) return
+    const dx = e.clientX - pointerStart.current.clientX
+    x.set(pointerStart.current.startX + dx)
+  }
+
+  const handlePointerUp = () => {
+    isInteracting.current = false
+    if (trackRef.current) trackRef.current.style.cursor = 'grab'
+    // Normalise x back into [-HALF_WIDTH, 0) range
+    let current = x.get()
+    while (current > 0) current -= HALF_WIDTH
+    while (current <= -HALF_WIDTH) current += HALF_WIDTH
+    x.set(current)
+  }
+
+  // Prev button: spring-snap one card to the right
+  const goToPrev = () => {
+    isInteracting.current = true
+    const current = x.get()
+    const snapped = Math.round(current / CARD_WIDTH) * CARD_WIDTH
+    let target = snapped + CARD_WIDTH
+    // If target would be positive, jump x by -HALF_WIDTH first (seamless — duplicates are identical)
+    if (target > 0) {
+      x.set(x.get() - HALF_WIDTH)
+      target -= HALF_WIDTH
+    }
+    animate(x, target, {
+      type: 'spring',
+      stiffness: 400,
+      damping: 35,
+      onComplete: () => {
+        isInteracting.current = false
+      },
+    })
+  }
+
+  // Next button: spring-snap one card to the left
+  const goToNext = () => {
+    isInteracting.current = true
+    const current = x.get()
+    const snapped = Math.round(current / CARD_WIDTH) * CARD_WIDTH
+    const target = snapped - CARD_WIDTH
+    animate(x, target, {
+      type: 'spring',
+      stiffness: 400,
+      damping: 35,
+      onComplete: () => {
+        // Normalise if we've passed the loop boundary
+        const final = x.get()
+        if (final <= -HALF_WIDTH) x.set(final + HALF_WIDTH)
+        isInteracting.current = false
+      },
+    })
+  }
+
   return (
     <div
       className="mt-6"
       role="img"
       aria-label="Field research photos from distribution network discovery sessions"
     >
-      {/* Outer container — clips the scrolling track, shows gradient fades */}
+      {/* Outer container — clips the track, holds gradient fades + buttons */}
       <div
         className="relative overflow-hidden rounded-xl"
         style={{ background: 'var(--color-surface-2)' }}
@@ -83,25 +168,33 @@ export default function DiscoveryFilmstrip() {
         {/* Left gradient fade */}
         <div
           className="absolute left-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to right, var(--color-surface-2), transparent)',
-          }}
+          style={{ background: 'linear-gradient(to right, var(--color-surface-2), transparent)' }}
           aria-hidden="true"
         />
 
         {/* Right gradient fade */}
         <div
           className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to left, var(--color-surface-2), transparent)',
-          }}
+          style={{ background: 'linear-gradient(to left, var(--color-surface-2), transparent)' }}
           aria-hidden="true"
         />
 
         {/* Scrolling track */}
-        <div
-          className="filmstrip-track flex gap-3 py-4 px-3"
-          style={{ width: 'max-content' }}
+        <motion.div
+          ref={trackRef}
+          style={{
+            x,
+            display: 'flex',
+            width: 'max-content',
+            gap: '12px',
+            padding: '16px 12px',
+            cursor: 'grab',
+            touchAction: 'none',
+          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
         >
           {filmStrip.map((photo, index) => {
             const isDuplicate = index >= photos.length
@@ -121,7 +214,7 @@ export default function DiscoveryFilmstrip() {
                   sizes="220px"
                 />
 
-                {/* Post-it overlay — only on originals, not duplicates */}
+                {/* Post-it overlay — originals only */}
                 {!isDuplicate && (
                   <div
                     className="absolute bottom-3 left-3 text-xs leading-snug px-2 py-1.5"
@@ -147,6 +240,58 @@ export default function DiscoveryFilmstrip() {
               </div>
             )
           })}
+        </motion.div>
+
+        {/* Prev / Next controls */}
+        <div className="absolute bottom-3 right-3 z-20 flex gap-1">
+          <button
+            onClick={goToPrev}
+            aria-label="Previous photo"
+            className="flex items-center justify-center rounded-full transition-colors"
+            style={{
+              width: '40px',
+              height: '40px',
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              color: 'var(--color-muted)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'var(--color-gold)'
+              e.currentTarget.style.color = 'var(--color-gold)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'var(--color-border)'
+              e.currentTarget.style.color = 'var(--color-muted)'
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M9 1L3 7l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            onClick={goToNext}
+            aria-label="Next photo"
+            className="flex items-center justify-center rounded-full transition-colors"
+            style={{
+              width: '40px',
+              height: '40px',
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              color: 'var(--color-muted)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'var(--color-gold)'
+              e.currentTarget.style.color = 'var(--color-gold)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'var(--color-border)'
+              e.currentTarget.style.color = 'var(--color-muted)'
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M5 1l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
