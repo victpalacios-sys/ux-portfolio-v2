@@ -34,7 +34,7 @@ const needs: NeedItem[] = [
     title: 'Business Results',
     description:
       'Designers need high-quality documentation and visual renders to impress clients and win future projects.',
-    src: '/images/distribution-networks-needs-3.jpg',
+    src: '/images/distribution-networks-needs-3.png',
     alt: 'Professional documentation and visual output from a distribution network project',
   },
 ]
