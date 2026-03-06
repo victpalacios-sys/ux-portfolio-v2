@@ -78,7 +78,7 @@ export const caseStudies: CaseStudy[] = [
         heading: 'Cross-Platform Strategy',
         body: 'Desktop: side panels are non-modal, staying open while the designer moves between tools and canvas. Tablet: the app bar and main tools are retained; panels adapt. Mobile: panels become modal to maximise canvas space. Precision placement on touch uses a two-step flow — pan to position the crosshair target, then tap to insert — eliminating the drag errors that plague direct-placement interactions on small screens.',
         image:
-          '/images/distribution-networks-mobile-v2.png',
+          '/images/distribution-networks-mobile.png',
         imageAlt: 'Quick path to success flow showing guided new-user experience',
       },
     ],
