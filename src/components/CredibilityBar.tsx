@@ -2,8 +2,10 @@ const items = [
   '25+ years UX experience',
   'Nokia',
   'iBwave',
-  'Construction tech',
-  'Montreal — remote-friendly',
+  'FedEx',
+  'Corning',
+  'General Dynamics',
+  'McKesson',
 ]
 
 export default function CredibilityBar() {
